@@ -97,8 +97,7 @@ int _printf(const char *format, ...)
 					}
 				case 'd':
 					{
-						_itoa(va_arg(ptr, int),
-								 ch, 10);
+						_itoa(va_arg(ptr, int), ch, 10);
 						strcpy(&buf[j], ch);
 						j += strlen(ch);
 						break;
