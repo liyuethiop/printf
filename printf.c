@@ -68,7 +68,7 @@ char *_itoa(int i, char *strout, int base)
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, j = 0;
+	int i = 0, j = 0, k;
 	char buf[100], ch[20];
 	char *str;
 	va_list ptr;
@@ -105,6 +105,32 @@ int _printf(const char *format, ...)
 				case 'i':
 					{
 						_itoa(va_arg(ptr, int), ch, 10);
+						strcpy(&buf[j], ch);
+						j += strlen(ch);
+						break;
+					}
+				case 'o':
+					{
+						_itoa(va_arg(ptr, int), ch, 8);
+						strcpy(&buf[j], ch);
+						j += strlen(ch);
+						break;
+					}
+				case 'x':
+					{
+						_itoa(va_arg(ptr, int), ch, 16);
+						for (k = 0; ch[k] != '\0'; k++)
+						{
+							if (ch[k] >= 'A' && ch[k] <= 'Z')
+									ch[k] += 32;
+						}
+						strcpy(&buf[j], ch);
+						j += strlen(ch);
+						break;
+					}
+				case 'X':
+					{
+						_itoa(va_arg(ptr, int), ch, 16);
 						strcpy(&buf[j], ch);
 						j += strlen(ch);
 						break;
