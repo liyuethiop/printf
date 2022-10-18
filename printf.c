@@ -111,5 +111,7 @@ int _printf(const char *format, ...)
 		}
 		format++;
 	}
-	return (write(1, buf, j));
+	fwrite(buf, j, 1, stdout);
+	va_end(ptr);
+	return (j);
 }
