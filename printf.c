@@ -102,6 +102,13 @@ int _printf(const char *format, ...)
 						j += strlen(ch);
 						break;
 					}
+				case 'i':
+					{
+						_itoa(va_arg(ptr, int), ch, 10);
+						strcpy(&buf[j], ch);
+						j += strlen(ch);
+						break;
+					}
 			}
 		}
 		else
