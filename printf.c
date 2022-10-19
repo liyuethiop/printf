@@ -74,7 +74,8 @@ int _printf(const char *format, ...)
 	va_list ptr;
 
 	va_start(ptr, format);
-
+	if (format == NULL)
+		return;
 	while (format && format[i])
 	{
 		if (format[i] == '%')
@@ -88,9 +89,17 @@ int _printf(const char *format, ...)
 						j++;
 						break;
 					}
+				case '%':
+					{
+						buf[j] = va_arg(ptr, int);
+						j++;
+						break;
+					}
 				case 's':
 					{
 						str = va_arg(ptr, char *);
+						if (str == NULL)
+							str = "(null)";
 						strcpy(&buf[j], str);
 						j += strlen(str);
 						break;
@@ -134,6 +143,16 @@ int _printf(const char *format, ...)
 						strcpy(&buf[j], ch);
 						j += strlen(ch);
 						break;
+					}
+				default:
+					{
+						if (format[i])
+						{
+							buf[j] = '%';
+							j++;
+							buf[j] = format[i];
+							j++;
+						}
 					}
 			}
 		}
