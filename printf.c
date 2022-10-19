@@ -90,7 +90,7 @@ int _printf(const char *format, ...)
 					}
 				case '%':
 					{
-						buf[j] = va_arg(ptr, int);
+						buf[j] = '%';
 						j++;
 						break;
 					}
