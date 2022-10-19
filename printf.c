@@ -103,6 +103,15 @@ int _printf(const char *format, ...)
 						j += strlen(str);
 						break;
 					}
+				case 'S':
+					{
+						str = va_arg(ptr, char *);
+						if (str == NULL)
+							str = "(null)";
+						strcpy(&buf[j], str);
+						j += strlen(str);
+						break;
+					}
 				case 'd':
 					{
 						_itoa(va_arg(ptr, int), ch, 10);
